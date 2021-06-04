@@ -4,9 +4,9 @@ Autoupdate feature for windows application
 #	Overview
 
 This document is intended to describe how we can implement auto update feature for existing/new application. We have created generic feature that can be leveraged by other applications. For auto update, the following applications, and extension class were created
-•	AutoUpdate.exe: Download manager, installing or replacing files.
-•	AutoUpdates.Extensions.dll: Extension class that was created to help applications that intend to implement auto update feature.
-•	AutoUpdate.GenerateFiles.exe: Console application required by release management or developers to generate the files that needs to be updated. Creates files that are encrypted.
+-	AutoUpdate.exe: Download manager, installing or replacing files.
+-	AutoUpdates.Extensions.dll: Extension class that was created to help applications that intend to implement auto update feature.
+-	AutoUpdate.GenerateFiles.exe: Console application required by release management or developers to generate the files that needs to be updated. Creates files that are encrypted.
 
 # Project Exclusions
 
@@ -28,12 +28,14 @@ Technology Constraints:
  
 •	Create a manifest file for the application, with following name format NAMEOFAPPLICATIONManifest.xml, example for ApplicationTest, the manifest file was named as ApplicationTestManifest.xml
 
+```bash
 <Application>
   <Name>ApplicationTest</Name>
   <Version>2.3.0.1</Version>
   <DownloadUrl>https://download.url.com/Upgrade/test/</DownloadUrl>
   <DownloadFileName>ApplicationTest.dat</DownloadFileName> 
 </Application>
+```
 
 •	Generate the two files, first would be a zip file which contains the files to be replaced, second file would be your manifest file. To generate file, we have create a console application AutoUpdate.GenerateFiles.exe, which can be leveraged to generate the files.  
 
@@ -46,11 +48,15 @@ AutoUpdate.GenerateFiles.exe /InputFile:"C:\temp\ApplicationTest.zip" /InputMani
 
 
 
-6.0	Security
+
+#Security
 
 Both the zip file and manifest file on the server are encrypted using Rijndael algorithm.
-7.0	Appendix
+
+#Appendix
 In print to pdf file, we have used this code snipped to do auto update check, download and install
+
+```bash
 if (AutoUpdates.Extensions.Utils.UpdatesAvailable("Manifest file name"))
 {
 	var th = new Thread(() =>
@@ -77,3 +83,4 @@ if (AutoUpdates.Extensions.Utils.UpdatesAvailable("Manifest file name"))
 	th.SetApartmentState(ApartmentState.STA);
 	th.Start();
 }
+```bash
