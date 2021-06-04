@@ -83,4 +83,4 @@ if (AutoUpdates.Extensions.Utils.UpdatesAvailable("Manifest file name"))
 	th.SetApartmentState(ApartmentState.STA);
 	th.Start();
 }
-```bash
+```
