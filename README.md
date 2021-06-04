@@ -49,12 +49,13 @@ AutoUpdate.GenerateFiles.exe /InputFile:"C:\temp\ApplicationTest.zip" /InputMani
 
 
 
-#Security
+# Security
 
 Both the zip file and manifest file on the server are encrypted using Rijndael algorithm.
 
-#Appendix
-In print to pdf file, we have used this code snipped to do auto update check, download and install
+# Appendix
+
+The code snippet for auto update check, download and install
 
 ```bash
 if (AutoUpdates.Extensions.Utils.UpdatesAvailable("Manifest file name"))
